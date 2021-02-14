@@ -1,34 +1,16 @@
-import React, { useState } from "react";
-import {Redirect} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {useLocation, Redirect} from "react-router-dom";
 import { Loader } from "../components";
-
-/* Fetch some data like this: 
-  const [countryList, setCountryList] = useState(storedCountryList);
-
-  useEffect(() => {
-    if (!countryList) {
-      const fetchAndStoreCountryData = async () => {
-        // if countries don't exist yet, get them
-        const countryNames = await fetch("http://localhost:3001/api/names")
-        .then((res) => res.json())
-        .catch(err => console.error("Error occured while fetching country names!", err))
-
-        const countryContinents = await fetch("http://localhost:3001/api/continent")
-        .then((res) => res.json())
-        .catch(err => console.error("Error occured while fetching country continents!", err))
-
-        console.log({countryNames, countryContinents})
-          // setCountryList(json);
-          // localStorage.setItem("countryList", JSON.stringify(json))
-      };
-      fetchAndStoreCountryData();
-    }
-  }, [countryList]);
-*/
-
+import {fetchAndStoreCountryData} from "../utils";
 
 const CountryDetail = () => {
-  const [countryInfo, setCountryInfo] = useState("");
+  const location = useLocation();
+  const countryCode = location.pathname.slice(1); // pathname includes '/' at start
+  const countryData = JSON.parse(localStorage.getItem(countryCode));
+  // const [countryInfo, setCountryInfo] = useState(countryData);
+  // useEffect(() => {
+// 
+  // })
   // get linked countryID from the router
   // if the country doesn't exist, nav to the error page
     // Redirect
