@@ -6,13 +6,16 @@ import { Loader } from "./components";
 import { fetchAndStoreCountryData } from "./utils";
 
 const localStorage = window.localStorage;
+// localStorage.clear();
 const storedCountryList = JSON.parse(localStorage.getItem("countryList"));
 
 const App = () => {
   const [countryList, setCountryList] = useState(storedCountryList);
 
   useEffect(() => {
-    if (!countryList) fetchAndStoreCountryData(countryList, setCountryList);
+    if (!countryList) {
+      fetchAndStoreCountryData(setCountryList);
+    }
   }, [countryList, setCountryList]);
   if (!countryList) return <Loader />;
   return (

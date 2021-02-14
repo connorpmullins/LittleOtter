@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {} from "react-router-dom";
-import { DropDown } from "../components";
+import { CountryList, DropDown } from "../components";
 
 const CONTINENTS = [
   { id: "", title: "All" },
@@ -14,9 +14,16 @@ const CONTINENTS = [
 
 const CountryListPage = ({countryList}) => {
   const [continentFilter, setContinentFilter] = useState("");
-  // get linked countryID from the router
-  // if the country doesn't exist, nav to the error page
-  // if the country does exist, fetch additional country data (if necessary)
+  const [displayedCountries, setDisplayedCountries] = useState(countryList);
+  useEffect(() => {
+    if (continentFilter) {
+      setDisplayedCountries(countryList.filter(c => c.continent === continentFilter));
+    } else {
+      setDisplayedCountries(countryList)
+    }
+  }, [continentFilter, countryList, setDisplayedCountries])
+
+  console.log({displayedCountries})
   return (
     <div className="CountryListPage">
       <div className="header">
@@ -36,6 +43,10 @@ const CountryListPage = ({countryList}) => {
           value={continentFilter}
         />
       </div>
+      <CountryList
+        countryList={displayedCountries}
+        onSelect={countryID => console.log('navigate to: ', countryID)}
+      />
     </div>
   );
 };

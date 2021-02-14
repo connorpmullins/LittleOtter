@@ -1,5 +1,5 @@
-const fetchAndStoreCountryData = async (countryList, setCountryList) => {
-  const countryData = {};
+const fetchAndStoreCountryData = async (setCountryList) => {
+  const countryList = [];
   // if countries don't exist yet, get them
   const countryNames = await fetch("http://localhost:3001/api/names")
     .then((res) => res.json())
@@ -14,13 +14,14 @@ const fetchAndStoreCountryData = async (countryList, setCountryList) => {
     );
 
   Object.keys(countryNames).forEach((countryCode) => {
-    countryData[countryCode] = {
-      name: countryNames[countryCode],
+    countryList.push({
+      code: countryCode,
       continent: countryContinents[countryCode],
-    };
+      name: countryNames[countryCode],
+    });
   });
-  setCountryList(countryData);
-  localStorage.setItem("countryList", JSON.stringify(countryData));
+  localStorage.setItem("countryList", JSON.stringify(countryList));
+  setCountryList(countryList);
 };
 
 export { fetchAndStoreCountryData };
