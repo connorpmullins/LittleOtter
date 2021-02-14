@@ -21,6 +21,7 @@ const fetchAndStoreCountryList = async (setCountryList) => {
       name: countryNames[countryCode],
     });
   });
+  countryList.sort((a,b) => a.name < b.name ? -1 : 1);
   localStorage.setItem("countryList", JSON.stringify(countryList));
   setCountryList(countryList);
 };

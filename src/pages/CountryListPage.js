@@ -24,7 +24,6 @@ const CountryListPage = ({countryList}) => {
     }
   }, [continentFilter, countryList, setDisplayedCountries])
 
-  console.log({displayedCountries})
   return (
     <div className="CountryListPage">
       <div className="header">

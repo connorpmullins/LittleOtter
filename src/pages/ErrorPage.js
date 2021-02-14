@@ -6,7 +6,7 @@ class Error extends React.Component {
         return (
           <div className="Error">
             <h1>ERROR</h1>
-            <h2>The page you are looking for does not exist</h2>
+            <h2>We don't have data on the country you're looking for.</h2>
           </div>
         );
     }

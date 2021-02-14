@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {useLocation, Redirect} from "react-router-dom";
 import { Loader } from "../components";
-import {fetchAndStoreCountryData} from "../utils";
 
-const CountryDetail = () => {
+const CountryDetail = ({countryList}) => {
   const location = useLocation();
   const countryCode = location.pathname.slice(1); // pathname includes '/' at start
-  const countryData = JSON.parse(localStorage.getItem(countryCode));
+  const country = countryList.find(c => c.code === countryCode);
   // const [countryInfo, setCountryInfo] = useState(countryData);
   // useEffect(() => {
 // 
@@ -16,6 +15,9 @@ const CountryDetail = () => {
     // Redirect
   // if the country does exist, fetch additional country data (if necessary)
   // if (!countryInfo) return <Loader />;
+  if (!country) {
+    return <Redirect to="/error" />
+  }
   return (
     <div className="CountryDetail">
       <h1> Country Data </h1>

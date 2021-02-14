@@ -33,7 +33,7 @@ const App = () => {
           <ErrorPage />
         </Route>
         <Route path="/:countryID">
-          <CountryDetailPage />
+          <CountryDetailPage countryList={countryList}/>
         </Route>
       </Switch>
     </Router>
