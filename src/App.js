@@ -1,24 +1,35 @@
-import React from 'react';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { CountryDetailPage, CountryListPage, ErrorPage } from "./pages";
+import { Loader } from "./components";
+import { fetchAndStoreCountryData } from "./utils";
 
-class App extends React.Component {
-    render() {
-        return (
-          <div className="App">
-            <h1> Country Data </h1>
-            <label htmlFor="continet">Select a Continent</label>
-            <select id="continent">
-              <option value="">(All)</option>
-              <option value="AF">Africa</option>
-              <option value="AS">Asia</option>
-              <option value="EU">Europe</option>
-              <option value="NA">North America</option>
-              <option value="OC">Oceania</option>
-              <option value="SA">South America</option>
-            </select>
-          </div>
-        );
-    }
-}
+const localStorage = window.localStorage;
+const storedCountryList = JSON.parse(localStorage.getItem("countryList"));
+
+const App = () => {
+  const [countryList, setCountryList] = useState(storedCountryList);
+
+  useEffect(() => {
+    if (!countryList) fetchAndStoreCountryData(countryList, setCountryList);
+  }, [countryList, setCountryList]);
+  if (!countryList) return <Loader />;
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <CountryListPage countryList={countryList}/>
+        </Route>
+        <Route path="/error">
+          <ErrorPage />
+        </Route>
+        <Route path="/:countryID">
+          <CountryDetailPage />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 
 export default App;
