@@ -1,5 +1,4 @@
 import React from 'react';
-import {} from "react-router-dom";
 
 class Error extends React.Component {
     render() {
