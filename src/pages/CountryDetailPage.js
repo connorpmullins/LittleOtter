@@ -1,16 +1,6 @@
 import React, { useState } from "react";
-import {} from "react-router-dom";
-import { DropDown, Loader } from "../components";
-
-const CONTINENTS = [
-  { id: "", title: "All" },
-  { id: "AF", title: "Africa" },
-  { id: "AS", title: "Asia" },
-  { id: "EU", title: "Europe" },
-  { id: "NA", title: "North America" },
-  { id: "OC", title: "Oceania" },
-  { id: "SA", title: "South America" },
-];
+import {Redirect} from "react-router-dom";
+import { Loader } from "../components";
 
 /* Fetch some data like this: 
   const [countryList, setCountryList] = useState(storedCountryList);
@@ -41,8 +31,9 @@ const CountryDetail = () => {
   const [countryInfo, setCountryInfo] = useState("");
   // get linked countryID from the router
   // if the country doesn't exist, nav to the error page
+    // Redirect
   // if the country does exist, fetch additional country data (if necessary)
-  if (!countryInfo) return <Loader />;
+  // if (!countryInfo) return <Loader />;
   return (
     <div className="CountryDetail">
       <h1> Country Data </h1>

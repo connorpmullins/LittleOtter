@@ -1,13 +1,14 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const CountryList = ({countryList, onSelect}) => (
-  <div className="countryList">
+  <div className="country-list">
     {countryList.map(country => (
-      <div 
-        key={country.code}
-        onClick={() => onSelect(country.code)}
+      <Link 
         className="country-pressable"
-      >{country.name}</div>
+        key={country.code}
+        to={`/${country.code}`}
+      >{country.name}</Link>
     ))}
   </div>
 );

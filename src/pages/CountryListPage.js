@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-import {} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import { CountryList, DropDown } from "../components";
 
 const CONTINENTS = [
-  { id: "", title: "All" },
-  { id: "AF", title: "Africa" },
-  { id: "AS", title: "Asia" },
-  { id: "EU", title: "Europe" },
-  { id: "NA", title: "North America" },
-  { id: "OC", title: "Oceania" },
-  { id: "SA", title: "South America" },
+  { code: "", name: "All" },
+  { code: "AF", name: "Africa" },
+  { code: "AS", name: "Asia" },
+  { code: "EU", name: "Europe" },
+  { code: "NA", name: "North America" },
+  { code: "OC", name: "Oceania" },
+  { code: "SA", name: "South America" },
 ];
 
 const CountryListPage = ({countryList}) => {
+  const history = useHistory();
   const [continentFilter, setContinentFilter] = useState("");
   const [displayedCountries, setDisplayedCountries] = useState(countryList);
   useEffect(() => {
@@ -37,16 +38,13 @@ const CountryListPage = ({countryList}) => {
         />
         <DropDown
           id="country"
-          label="View a specific country"
-          onChange={e => setContinentFilter(e.target.value)}
-          options={CONTINENTS}
-          value={continentFilter}
+          label="View a Specific Country"
+          onChange={e => history.push(`/${e.target.value}`)}
+          options={displayedCountries}
+          value={""}
         />
       </div>
-      <CountryList
-        countryList={displayedCountries}
-        onSelect={countryID => console.log('navigate to: ', countryID)}
-      />
+      <CountryList countryList={displayedCountries} />
     </div>
   );
 };

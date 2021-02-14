@@ -9,6 +9,21 @@
   justify-content: space-around;
 }
 
+.country-list {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2em;
+}
+
+.country-pressable {
+  margin-bottom: 1em;
+}
+
+.dd-label {
+  margin-right: 1em;
+}
+
 /* SPINNER STYLES */
 .lds-wrapper {
   display: flex;
