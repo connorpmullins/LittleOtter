@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
+
 import { CountryDetailPage, CountryListPage, ErrorPage } from "./pages";
 import { Loader } from "./components";
 import { hydrateCountryData, fetchAndStoreCountryList } from "./utils";
 
 const localStorage = window.localStorage;
-// localStorage.clear();
 const storedCountryList = JSON.parse(localStorage.getItem("countryList"));
 
 const App = () => {

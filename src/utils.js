@@ -10,7 +10,6 @@ const get = async (type) =>
 
 const fetchAndStoreCountryList = async (setCountryList) => {
   const countryList = [];
-  // if countries don't exist yet, get them
   const countryNames = await get("names");
   const countryContinents = await get("continent");
 
@@ -46,6 +45,7 @@ const hydrateCountryData = async (countryList, setCountryList) => {
       phone: phone[country.code],
       wiki: `https://en.wikipedia.org/wiki/${country.name}`
     }));
+  localStorage.setItem("countryList", JSON.stringify(hydratedList));
   setCountryList(hydratedList);
 }
 

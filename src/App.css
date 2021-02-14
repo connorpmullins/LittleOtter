@@ -28,6 +28,20 @@ body {
   margin-bottom: 20px;
 }
 
+.detail-body {
+  margin: 0px 20px 0px 20px;
+}
+
+.detail-section {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.detail-section-header {
+  margin-right: 20px;
+}
+
 .dd-label {
   margin-right: 20px;
 }
